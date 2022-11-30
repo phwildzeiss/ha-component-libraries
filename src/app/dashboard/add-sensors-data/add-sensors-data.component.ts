@@ -27,8 +27,8 @@ export class AddSensorsDataComponent implements OnInit {
 
   sensorFormControl = new FormControl('', Validators.required);
   dateFormControl = new FormControl('', [Validators.required]);
-  temperatureFormControl = new FormControl('', [Validators.pattern('^$|^-?[0-9]+'), Validators.required]);
-  humidityFormControl = new FormControl('', [Validators.pattern('^$|^[0-9]+'), Validators.required]);
+  temperatureFormControl = new FormControl('', [Validators.min(-274), Validators.max(1100), Validators.required]);
+  humidityFormControl = new FormControl('', [Validators.min(0), Validators.max(100), Validators.required]);
   ngOnInit(): void {
     this.sensorenDataForm = this.formBuilder.group({
       sensorId: this.sensorFormControl,

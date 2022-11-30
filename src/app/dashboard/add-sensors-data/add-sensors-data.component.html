@@ -33,8 +33,11 @@
   <mat-form-field appearance="outline" [floatLabel]="getFloatLabelValue()" class="marginRight">
     <mat-label>Temperatur</mat-label>
     <input type="number" matInput [formControl]="temperatureFormControl" placeholder="Ex. 22" [readonly]="isReadOnly">
-    <mat-error *ngIf="temperatureFormControl.hasError('pattern')">
-      Bitte geben Sie eine valide Temperatur ein.
+    <mat-error *ngIf="temperatureFormControl.hasError('max')">
+      Die Temperatur darf 1100°C nicht überschreiten.
+    </mat-error>
+    <mat-error *ngIf="temperatureFormControl.hasError('min')">
+      Die Temperatur darf -274°C nicht unterschreiten.
     </mat-error>
     <mat-error *ngIf="temperatureFormControl.hasError('required')">
        Temperatur ist <strong>erforderlich</strong>
@@ -44,8 +47,11 @@
   <mat-form-field appearance="outline" [floatLabel]="getFloatLabelValue()">
     <mat-label>Luftfeuchtigkeit</mat-label>
     <input type="number" matInput [formControl]="humidityFormControl" placeholder="Ex. 48" [readonly]="isReadOnly">
-    <mat-error *ngIf="humidityFormControl.hasError('pattern')">
-      Bitte geben Sie eine valide Luftfeuchtigkeit ein.
+    <mat-error *ngIf="humidityFormControl.hasError('max')">
+      Die Luftfeuchtigkeit darf 100% nicht überschreiten.
+    </mat-error>
+    <mat-error *ngIf="humidityFormControl.hasError('min')">
+      Die Luftfeuchtigkeit darf 0% nicht unterschreiten.
     </mat-error>
     <mat-error *ngIf="humidityFormControl.hasError('required')">
        Luftfeuchtigkeit ist <strong>erforderlich</strong>
