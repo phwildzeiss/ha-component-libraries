@@ -1,0 +1,56 @@
+<mat-card class="marginAllSides">
+<button mat-stroked-button color="primary"
+  (click)="toggleAddTask()">
+  <mat-icon>{{expandAddMeasurement}}</mat-icon>
+</button>
+
+<form [formGroup]="sensorenDataForm" (ngSubmit)="onSubmit()" *ngIf="showAddTask">
+  <div class="mat-typography marginTop">
+    <h2>Neuen Messwert hinzufügen</h2>
+  </div>
+  
+  <mat-form-field  appearance="outline" [floatLabel]="getFloatLabelValue()" class="marginRight">
+    <mat-label>Select a sensor</mat-label>
+    <mat-select [formControl]="sensorFormControl" [disabled]="isDisabled">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let item of storeService.sensoren" [value]="item.id">{{item?.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="sensorFormControl.hasError('required')">
+      Sensor ist <strong>erforderlich</strong>
+   </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" [floatLabel]="getFloatLabelValue()" class="marginRight">
+    <mat-label>Datum</mat-label>
+    <input type="date" matInput [formControl]="dateFormControl" placeholder="Ex. 22.10.2022" [readonly]="isReadOnly">
+    <mat-error *ngIf="dateFormControl.hasError('date')">
+      Bitte geben Sie ein valides Datum ein.
+    </mat-error>
+    <mat-error *ngIf="dateFormControl.hasError('required')">
+       Datum ist <strong>erforderlich</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" [floatLabel]="getFloatLabelValue()" class="marginRight">
+    <mat-label>Temperatur</mat-label>
+    <input type="number" matInput [formControl]="temperatureFormControl" placeholder="Ex. 22" [readonly]="isReadOnly">
+    <mat-error *ngIf="temperatureFormControl.hasError('pattern')">
+      Bitte geben Sie eine valide Temperatur ein.
+    </mat-error>
+    <mat-error *ngIf="temperatureFormControl.hasError('required')">
+       Temperatur ist <strong>erforderlich</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" [floatLabel]="getFloatLabelValue()">
+    <mat-label>Luftfeuchtigkeit</mat-label>
+    <input type="number" matInput [formControl]="humidityFormControl" placeholder="Ex. 48" [readonly]="isReadOnly">
+    <mat-error *ngIf="humidityFormControl.hasError('pattern')">
+      Bitte geben Sie eine valide Luftfeuchtigkeit ein.
+    </mat-error>
+    <mat-error *ngIf="humidityFormControl.hasError('required')">
+       Luftfeuchtigkeit ist <strong>erforderlich</strong>
+    </mat-error>
+  </mat-form-field>
+  <button mat-stroked-button color="primary" type="submit" style="display: block;" [disabled]="isDisabled">Erfassen</button>
+</form>
+</mat-card>
