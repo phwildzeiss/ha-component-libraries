@@ -18,3 +18,41 @@
 .mat-row:nth-child(odd){
     background-color: rgb(232, 231, 231);
 }
+
+.mat-column-delete {
+    width: 20px !important;
+    padding-right: 24px !important;
+}
+
+.mat-column-sensorName {
+    padding-left: 24px !important;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    .mat-table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        display: table;
+        border-collapse: collapse;
+        margin: 0;
+    }
+    .mat-row,
+    .mat-header-row {
+        display: table-row;
+    }
+    .mat-cell,
+    .mat-header-cell {
+        word-wrap: initial;
+        display: table-cell;
+        padding: 0px 5px;
+        line-break: unset;
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+  }
