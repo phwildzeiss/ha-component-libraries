@@ -14,5 +14,7 @@ export class StoreService {
   public pageSize: any = 10;
   public length: any = 50;
 
+  public isLoading = false;
+
   constructor() { }
 }

@@ -12,7 +12,7 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { ErrorStateMatcher, MatNativeDateModule, MatRippleModule, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
@@ -20,6 +20,10 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -31,6 +35,7 @@ import {MatCardModule} from '@angular/material/card';
     HeaderComponent,
     SensorsDataComponent,
     AboutPageComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,11 @@ import {MatCardModule} from '@angular/material/card';
     MatPaginatorModule,
     MatButtonModule,
     MatCardModule,
+    MatProgressSpinnerModule,
+    FlexLayoutModule,
+    MatSortModule,
+    MatRippleModule,
+    MatNativeDateModule
   ],
   providers: [
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}

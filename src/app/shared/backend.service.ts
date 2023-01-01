@@ -23,9 +23,6 @@ export class BackendService {
   public async getSensorenDaten() {
     const sensorenDataResponse = await firstValueFrom(this.http.get<SensorendataResponse[]>(`http://localhost:5000/sensorsData?_page=` + this.storeService.page + `&_limit=` + this.storeService.pageSize, {observe:'response'}));
     this.storeService.length = Number(sensorenDataResponse.headers.get ('x-total-count'));
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ");
-    console.log(this.storeService.length);
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ");
     if(sensorenDataResponse.body != null) {
       const sensorenData: Sensorendata[]= sensorenDataResponse.body.map(data => {
         const sensor: Sensor = this.sensoren.filter(sensor => sensor.id == data.sensorId)[0];
