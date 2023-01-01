@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { SensorPosition } from 'src/app/Sensor';
 import { BackendService } from 'src/app/shared/backend.service';
 import { StoreService } from 'src/app/shared/store.service';
-import {PageEvent} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -13,6 +13,8 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./sensors-data.component.scss']
 })
 export class SensorsDataComponent implements OnInit {
+
+  @ViewChild('paginator') paginator: any;
 
   public get SensorPosition() {return SensorPosition; }
   public page = this.storeService.page - 1;
@@ -35,7 +37,13 @@ export class SensorsDataComponent implements OnInit {
     console.log('DELETE SENSOR DATA');
     console.log(id);
     this.mapDeleteItems.set(id, true);
+    console.log(this.storeService.length);
+    if(this.storeService.sensorenDaten.length == 1) {
+      console.log(this.storeService.length);
+      this.paginator.previousPage();
+    }
     await this.backendService.deleteSensorsDaten(id);
+
     this.mapDeleteItems.delete(id);
   }
 
