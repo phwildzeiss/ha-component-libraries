@@ -24,7 +24,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSortModule } from '@angular/material/sort';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './dashboard/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatSortModule } from '@angular/material/sort';
     SensorsDataComponent,
     AboutPageComponent,
     LoadingSpinnerComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { MatSortModule } from '@angular/material/sort';
     FlexLayoutModule,
     MatSortModule,
     MatRippleModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
   ],
   providers: [
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}

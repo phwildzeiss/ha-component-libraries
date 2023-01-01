@@ -35,7 +35,7 @@
             <ng-container matColumnDef="delete">
                 <mat-header-cell *matHeaderCellDef> Löschen </mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Löschen:">
-                    <button id="deleteButton" mat-icon-button aria-label="expand row"  (click)="deleteSensordata(element.id)" [disabled]="mapDeleteItems.has(element.id)">
+                    <button id="deleteButton" mat-icon-button aria-label="expand row"  (click)="openDeleteModal(element.id)" [disabled]="mapDeleteItems.has(element.id)">
                         <mat-icon *ngIf="!mapDeleteItems.has(element.id)">delete</mat-icon>
                         <mat-icon *ngIf="mapDeleteItems.has(element.id)"><mat-spinner diameter="20">
                         </mat-spinner></mat-icon>

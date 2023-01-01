@@ -5,6 +5,8 @@ import { StoreService } from 'src/app/shared/store.service';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 
 @Component({
@@ -22,7 +24,7 @@ export class SensorsDataComponent implements OnInit {
   toDeleteItemId: number = 0;
   mapDeleteItems = new Map();
 
-  constructor(private backendService: BackendService, public storeService: StoreService, private cd: ChangeDetectorRef) { }
+  constructor(private backendService: BackendService, public storeService: StoreService, private cd: ChangeDetectorRef, private dialog: MatDialog,) { }
 
   displayedColumns: string[] = ['sensorName', 'date', 'temperature', 'humidity', 'location', 'position', 'delete'];
 
@@ -45,6 +47,25 @@ export class SensorsDataComponent implements OnInit {
     await this.backendService.deleteSensorsDaten(id);
 
     this.mapDeleteItems.delete(id);
+  }
+
+  async openDeleteModal(id: number) {
+    const dialogRef = this.dialog
+      .open(DeleteDialogComponent, {
+        width: '300px',
+        data: {
+          id,
+          message: `Möchten Sie den Messwert wirklich löschen? `,
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.deleteSensordata(id);
+        }
+       
+      });
+      
   }
 
   async handlePageEvent(event: PageEvent) {
